@@ -1,4 +1,5 @@
 ﻿using InterfaceBooster.ProviderPluginApi.Data;
+using InterfaceBooster.ProviderPluginApi.Data.Filter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
