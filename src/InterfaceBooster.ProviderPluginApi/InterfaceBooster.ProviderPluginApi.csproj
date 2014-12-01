@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A0C7623E-3127-4497-AE76-DF8AD62DB9D3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InterfaceBooster.ProviderPluginApi</RootNamespace>
+    <AssemblyName>InterfaceBooster.ProviderPluginApi</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Communication\CreateResponse.cs" />
+    <Compile Include="Communication\DeleteResponse.cs" />
+    <Compile Include="Communication\ExecuteResponse.cs" />
+    <Compile Include="Communication\ICreateRequest.cs" />
+    <Compile Include="Communication\IDeleteRequest.cs" />
+    <Compile Include="Communication\IExecuteRequest.cs" />
+    <Compile Include="Communication\IReadRequest.cs" />
+    <Compile Include="Communication\IRequest.cs" />
+    <Compile Include="Communication\ISaveRequest.cs" />
+    <Compile Include="Communication\IUpdateRequest.cs" />
+    <Compile Include="Communication\ReadResponse.cs" />
+    <Compile Include="Communication\RequestType.cs" />
+    <Compile Include="Communication\Response.cs" />
+    <Compile Include="Communication\SaveResponse.cs" />
+    <Compile Include="Communication\UpdateResponse.cs" />
+    <Compile Include="Data\Answer.cs" />
+    <Compile Include="Data\ConnectionSettings.cs" />
+    <Compile Include="Data\Field.cs" />
+    <Compile Include="Data\Filter\AndFilterGroup.cs" />
+    <Compile Include="Data\Filter\Filter.cs" />
+    <Compile Include="Data\Filter\FilterCondition.cs" />
+    <Compile Include="Data\Filter\FilterDefinition.cs" />
+    <Compile Include="Data\Filter\FilterGroup.cs" />
+    <Compile Include="Data\Filter\FilterType.cs" />
+    <Compile Include="Data\Filter\OrFilterGroup.cs" />
+    <Compile Include="Data\Filter\SingleValueFilterCondition.cs" />
+    <Compile Include="Data\LocalizedText.cs" />
+    <Compile Include="Data\Question.cs" />
+    <Compile Include="Data\RecordSet.cs" />
+    <Compile Include="Data\Schema.cs" />
+    <Compile Include="Data\ValueDefinition.cs" />
+    <Compile Include="IProviderConnection.cs" />
+    <Compile Include="IProviderPlugin.cs" />
+    <Compile Include="IHost.cs" />
+    <Compile Include="IProviderPluginInstance.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CreateResource.cs" />
+    <Compile Include="Service\DeleteResource.cs" />
+    <Compile Include="Service\ExecuteResource.cs" />
+    <Compile Include="Service\ICreateEndpoint.cs" />
+    <Compile Include="Service\IDeleteEndpoint.cs" />
+    <Compile Include="Service\IEndpoint.cs" />
+    <Compile Include="Service\IExecuteEndpoint.cs" />
+    <Compile Include="Service\IReadEndpoint.cs" />
+    <Compile Include="Service\ISaveEndpoint.cs" />
+    <Compile Include="Service\IUpdateEndpoint.cs" />
+    <Compile Include="Service\ReadResource.cs" />
+    <Compile Include="Service\Resource.cs" />
+    <Compile Include="Service\SaveResource.cs" />
+    <Compile Include="Service\UpdateResource.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
