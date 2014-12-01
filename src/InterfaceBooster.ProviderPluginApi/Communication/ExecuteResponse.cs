@@ -13,7 +13,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// <summary>
         /// Gets the original request.
         /// </summary>
-        public IExecuteRequest Request { get; }
+        public IExecuteRequest Request { get; private set; }
 
         /// <summary>
         /// Gets or sets a dictionary containing the requested ReturnValues.
@@ -24,7 +24,11 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
 
         #region PUBLIC METHODS
 
-        public ExecuteResponse() : base(Communication.RequestType.Execute) { }
+        public ExecuteResponse(IExecuteRequest request)
+            : base(Communication.RequestType.Execute)
+        {
+            Request = request;
+        }
 
         #endregion
     }

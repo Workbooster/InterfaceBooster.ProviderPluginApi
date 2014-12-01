@@ -13,13 +13,17 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// <summary>
         /// Gets the original request.
         /// </summary>
-        public IDeleteRequest Request { get; }
+        public IDeleteRequest Request { get; private set; }
 
         #endregion
 
         #region PUBLIC METHODS
 
-        public DeleteResponse() : base(Communication.RequestType.Delete) { }
+        public DeleteResponse(IDeleteRequest request)
+            : base(Communication.RequestType.Delete)
+        {
+            Request = request;
+        }
 
         #endregion
     }

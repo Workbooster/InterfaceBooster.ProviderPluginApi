@@ -13,13 +13,17 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// <summary>
         /// Gets the original request.
         /// </summary>
-        public ICreateRequest Request { get; }
+        public ICreateRequest Request { get; private set; }
 
         #endregion
 
         #region PUBLIC METHODS
 
-        public CreateResponse() : base(Communication.RequestType.Create) { }
+        public CreateResponse(ICreateRequest request)
+            : base(Communication.RequestType.Create)
+        {
+            Request = request;
+        }
 
         #endregion
     }

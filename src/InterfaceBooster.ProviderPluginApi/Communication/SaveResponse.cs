@@ -13,13 +13,17 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// <summary>
         /// Gets the original request.
         /// </summary>
-        public ISaveRequest Request { get; }
+        public ISaveRequest Request { get; private set; }
 
         #endregion
 
         #region PUBLIC METHODS
 
-        public SaveResponse() : base(Communication.RequestType.Save) { }
+        public SaveResponse(ISaveRequest request)
+            : base(Communication.RequestType.Save)
+        {
+            Request = request;
+        }
 
         #endregion
     }

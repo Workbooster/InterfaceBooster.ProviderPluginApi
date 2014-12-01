@@ -13,13 +13,17 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// <summary>
         /// Gets the original request.
         /// </summary>
-        public IUpdateRequest Request { get; }
+        public IUpdateRequest Request { get; private set; }
 
         #endregion
 
         #region PUBLIC METHODS
 
-        public UpdateResponse() : base(Communication.RequestType.Update) { }
+        public UpdateResponse(IUpdateRequest request)
+            : base(Communication.RequestType.Update)
+        {
+            Request = request;
+        }
 
         #endregion
     }

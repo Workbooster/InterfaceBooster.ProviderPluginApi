@@ -14,7 +14,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// <summary>
         /// Gets the original request.
         /// </summary>
-        public IReadRequest Request { get; }
+        public IReadRequest Request { get; private set; }
 
         /// <summary>
         /// Gets or sets the RecordSet that contains the data according to the request (filtered, only the requested fields etc.).
@@ -25,7 +25,11 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
 
         #region PUBLIC METHODS
 
-        public ReadResponse() : base(Communication.RequestType.Read) { }
+        public ReadResponse(IReadRequest request)
+            : base(Communication.RequestType.Read)
+        {
+            Request = request;
+        }
 
         #endregion
     }
