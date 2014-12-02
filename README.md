@@ -1,7 +1,7 @@
 Interface Booster: Provider Plugin API
 ===================================
 
-This repository contains the source code for the .NET library (API) needed for implementing ProviderPlugins for the Interface Booster environment.
+This repository contains the source code for the .NET library (API) needed for implementing Provider Plugins for the Interface Booster environment.
 
 ## What are Provider Plugins?
 
@@ -17,7 +17,9 @@ Provider Plugins are used by Interface Booster to import and export data from an
 
 Directory | Description
 ----------| -------------
-/src | the source code
+/build | files used for building and deploying the project
+/src | the source code (Visual Studio Solution and Projects)
+/tools | scripts and software used for development
 
 ## License
 
@@ -27,7 +29,7 @@ This project is licensed under the terms of the GNU Lesser General Public Licens
 
 Workbooster GmbH<br/>
 Pfarrain 3a<br/>
-8604 Volketswil<br/>
+8604 Volketswil (Switzerland)<br/>
 
 Web: www.workbooster.ch<br/>
 E-Mail: info@workbooster.ch<br/>
