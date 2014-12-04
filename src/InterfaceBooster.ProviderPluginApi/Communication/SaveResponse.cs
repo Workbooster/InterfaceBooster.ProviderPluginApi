@@ -20,7 +20,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         #region PUBLIC METHODS
 
         public SaveResponse(ISaveRequest request)
-            : base(Communication.RequestType.Save)
+            : base(Communication.RequestTypeEnum.Save)
         {
             Request = request;
         }

@@ -15,7 +15,7 @@ namespace InterfaceBooster.ProviderPluginApi.Service
         /// <summary>
         /// Gets or sets a flag that states the type of the request. This is usefull to make a correct type-casting.
         /// </summary>
-        public RequestType RequestType { get; set; }
+        public RequestTypeEnum RequestType { get; set; }
 
         /// <summary>
         /// Gets or sets a Name-Resource dictionary with nested Resources. This Sub-Resources can be used in Sub-Requests.
@@ -39,7 +39,7 @@ namespace InterfaceBooster.ProviderPluginApi.Service
 
         #region PUBLIC METHODS
 
-        public Resource(RequestType type)
+        public Resource(RequestTypeEnum type)
         {
             RequestType = type;
         }

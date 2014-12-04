@@ -20,7 +20,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         #region PUBLIC METHODS
 
         public UpdateResponse(IUpdateRequest request)
-            : base(Communication.RequestType.Update)
+            : base(Communication.RequestTypeEnum.Update)
         {
             Request = request;
         }

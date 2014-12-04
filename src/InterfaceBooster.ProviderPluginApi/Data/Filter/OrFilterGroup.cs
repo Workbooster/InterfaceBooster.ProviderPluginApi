@@ -13,7 +13,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data.Filter
     {
         #region PUBLIC METHODS
 
-        public OrFilterGroup() : base(FilterType.OrGroup) { }
+        public OrFilterGroup() : base(FilterTypeEnum.OrGroup) { }
 
         #endregion
     }

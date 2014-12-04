@@ -33,7 +33,7 @@ namespace InterfaceBooster.ProviderPluginApi.Service
 
         #region PUBLIC METHODS
 
-        public ReadResource() : base(Communication.RequestType.Read) { }
+        public ReadResource() : base(Communication.RequestTypeEnum.Read) { }
 
         #endregion
     }

@@ -20,7 +20,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         #region PUBLIC METHODS
 
         public DeleteResponse(IDeleteRequest request)
-            : base(Communication.RequestType.Delete)
+            : base(Communication.RequestTypeEnum.Delete)
         {
             Request = request;
         }

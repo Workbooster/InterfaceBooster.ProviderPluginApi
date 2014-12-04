@@ -17,13 +17,13 @@ namespace InterfaceBooster.ProviderPluginApi.Data.Filter
         /// <summary>
         /// Gets the filter type. This allows an easy type-casting.
         /// </summary>
-        public FilterType FilterType { get; private set; }
+        public FilterTypeEnum FilterType { get; private set; }
 
         #endregion
 
         #region PUBLIC METHODS
 
-        public Filter(FilterType filterType)
+        public Filter(FilterTypeEnum filterType)
         {
             FilterType = filterType;
         }

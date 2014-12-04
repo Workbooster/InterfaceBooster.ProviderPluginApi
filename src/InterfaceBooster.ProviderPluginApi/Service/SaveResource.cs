@@ -27,7 +27,7 @@ namespace InterfaceBooster.ProviderPluginApi.Service
 
         #region PUBLIC METHODS
 
-        public SaveResource() : base(Communication.RequestType.Save) { }
+        public SaveResource() : base(Communication.RequestTypeEnum.Save) { }
 
         #endregion
     }

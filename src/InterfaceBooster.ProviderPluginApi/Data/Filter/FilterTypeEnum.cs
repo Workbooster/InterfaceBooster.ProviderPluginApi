@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InterfaceBooster.ProviderPluginApi.Data.Filter
 {
-    public enum FilterType
+    public enum FilterTypeEnum
     {
         Equal,
         NotEqual,

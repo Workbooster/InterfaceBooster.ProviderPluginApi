@@ -26,7 +26,7 @@ namespace InterfaceBooster.ProviderPluginApi.Service
 
         #region PUBLIC METHODS
 
-        public ExecuteResource() : base(Communication.RequestType.Execute) { }
+        public ExecuteResource() : base(Communication.RequestTypeEnum.Execute) { }
 
         #endregion
     }

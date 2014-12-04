@@ -19,12 +19,12 @@ namespace InterfaceBooster.ProviderPluginApi.Data.Filter
 
         #region PUBLIC METHOD
 
-        public SingleValueFilterCondition(Data.Filter.FilterType filterType, FilterDefinition definition, object value)
+        public SingleValueFilterCondition(Data.Filter.FilterTypeEnum filterType, FilterDefinition definition, object value)
             : base(filterType, definition)
         {
-            if (filterType == Data.Filter.FilterType.AndGroup)
+            if (filterType == Data.Filter.FilterTypeEnum.AndGroup)
                 throw new Exception("A logical AND operator cannot be used as single value filter");
-            if (filterType == Data.Filter.FilterType.OrGroup)
+            if (filterType == Data.Filter.FilterTypeEnum.OrGroup)
                 throw new Exception("A logical OR operator cannot be used as single value filter");
 
             Value = value;

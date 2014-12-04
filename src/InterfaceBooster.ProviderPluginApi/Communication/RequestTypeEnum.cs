@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InterfaceBooster.ProviderPluginApi.Communication
 {
-    public enum RequestType
+    public enum RequestTypeEnum
     {
         Read,
         Create,

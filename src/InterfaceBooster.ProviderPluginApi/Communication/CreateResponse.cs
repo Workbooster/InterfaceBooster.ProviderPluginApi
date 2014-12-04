@@ -20,7 +20,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         #region PUBLIC METHODS
 
         public CreateResponse(ICreateRequest request)
-            : base(Communication.RequestType.Create)
+            : base(Communication.RequestTypeEnum.Create)
         {
             Request = request;
         }

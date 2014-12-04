@@ -26,7 +26,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         #region PUBLIC METHODS
 
         public ReadResponse(IReadRequest request)
-            : base(Communication.RequestType.Read)
+            : base(Communication.RequestTypeEnum.Read)
         {
             Request = request;
         }

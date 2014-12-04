@@ -33,7 +33,7 @@ namespace InterfaceBooster.ProviderPluginApi.Service
 
         #region PUBLIC METHODS
 
-        public UpdateResource() : base(Communication.RequestType.Update) { }
+        public UpdateResource() : base(Communication.RequestTypeEnum.Update) { }
 
         #endregion
     }

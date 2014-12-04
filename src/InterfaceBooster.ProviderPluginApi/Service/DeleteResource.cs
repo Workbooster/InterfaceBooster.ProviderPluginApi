@@ -33,7 +33,7 @@ namespace InterfaceBooster.ProviderPluginApi.Service
 
         #region PUBLIC METHODS
 
-        public DeleteResource() : base(Communication.RequestType.Delete) { }
+        public DeleteResource() : base(Communication.RequestTypeEnum.Delete) { }
 
         #endregion
     }

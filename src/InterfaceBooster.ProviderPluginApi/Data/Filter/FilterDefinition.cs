@@ -33,7 +33,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data.Filter
         /// <summary>
         /// Gets or sets a list of filter types that can be used to compare the value of this filter-field with a value specified in a Filter object.
         /// </summary>
-        public FilterType[] SupportedFilterTypes { get; private set; }
+        public FilterTypeEnum[] SupportedFilterTypes { get; private set; }
 
         /// <summary>
         /// Gets or sets an user friendly and localizable description about this FilterDefinition. 
@@ -50,7 +50,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data.Filter
 
         #region PUBLIC METHODS
 
-        public FilterDefinition(string name, Type expectedType, FilterType[] supportedFilterTypes)
+        public FilterDefinition(string name, Type expectedType, FilterTypeEnum[] supportedFilterTypes)
         {
             Name = name;
             ExpectedType = expectedType;

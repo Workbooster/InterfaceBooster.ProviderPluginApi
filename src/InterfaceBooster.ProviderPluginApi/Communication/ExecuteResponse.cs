@@ -25,7 +25,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         #region PUBLIC METHODS
 
         public ExecuteResponse(IExecuteRequest request)
-            : base(Communication.RequestType.Execute)
+            : base(Communication.RequestTypeEnum.Execute)
         {
             Request = request;
         }

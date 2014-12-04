@@ -19,7 +19,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data.Filter
 
         #region PUBLIC METHODS
 
-        public FilterGroup(FilterType filterType)
+        public FilterGroup(FilterTypeEnum filterType)
             : base(filterType)
         {
         }

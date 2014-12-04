@@ -53,7 +53,7 @@
     <Compile Include="Communication\ISaveRequest.cs" />
     <Compile Include="Communication\IUpdateRequest.cs" />
     <Compile Include="Communication\ReadResponse.cs" />
-    <Compile Include="Communication\RequestType.cs" />
+    <Compile Include="Communication\RequestTypeEnum.cs" />
     <Compile Include="Communication\Response.cs" />
     <Compile Include="Communication\SaveResponse.cs" />
     <Compile Include="Communication\UpdateResponse.cs" />
@@ -65,7 +65,7 @@
     <Compile Include="Data\Filter\FilterCondition.cs" />
     <Compile Include="Data\Filter\FilterDefinition.cs" />
     <Compile Include="Data\Filter\FilterGroup.cs" />
-    <Compile Include="Data\Filter\FilterType.cs" />
+    <Compile Include="Data\Filter\FilterTypeEnum.cs" />
     <Compile Include="Data\Filter\OrFilterGroup.cs" />
     <Compile Include="Data\Filter\SingleValueFilterCondition.cs" />
     <Compile Include="Data\LocalizedText.cs" />

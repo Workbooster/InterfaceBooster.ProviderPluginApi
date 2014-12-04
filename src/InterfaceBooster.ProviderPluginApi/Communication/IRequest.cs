@@ -13,7 +13,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// <summary>
         /// Gets or sets a flag that states the type of the request. This is usefull to make a correct cast.
         /// </summary>
-        RequestType RequestType { get; set; }
+        RequestTypeEnum RequestType { get; set; }
 
         /// <summary>
         /// Gets or sets the Request(s) on some SubResources.
