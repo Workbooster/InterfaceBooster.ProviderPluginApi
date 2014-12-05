@@ -54,7 +54,7 @@ task Build -depends Clean {
 
       Write-Host
       Write-Host "Building"
-      exec { msbuild "/t:Clean;Rebuild" /p:Configuration=Release "/p:Platform=x64" /p:OutputPath=bin\Release\$finalDir\ /p:AssemblyOriginatorKeyFile=$signKeyPath "/p:SignAssembly=$sign" "/p:TreatWarningsAsErrors=$treatWarningsAsErrors" "/p:VisualStudioVersion=12.0" "/p:AllowUnsafeBlocks=$unsafe" (GetConstants $build.Constants $sign) "$sourceDir\$name\$name.csproj" | Out-Default } "Error building $name"
+      exec { msbuild "/t:Clean;Rebuild" /p:Configuration=Release /p:DocumentationFile=bin\Release\$finalDir\$name.xml "/p:Platform=x64" /p:OutputPath=bin\Release\$finalDir\ /p:AssemblyOriginatorKeyFile=$signKeyPath "/p:SignAssembly=$sign" "/p:TreatWarningsAsErrors=$treatWarningsAsErrors" "/p:VisualStudioVersion=12.0" "/p:AllowUnsafeBlocks=$unsafe" (GetConstants $build.Constants $sign) "$sourceDir\$name\$name.csproj" | Out-Default } "Error building $name"
     }
   }
 }
