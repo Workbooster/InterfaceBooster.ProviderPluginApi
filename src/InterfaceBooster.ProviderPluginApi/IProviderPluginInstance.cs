@@ -19,6 +19,11 @@ namespace InterfaceBooster.ProviderPluginApi
         IHost Host { get; }
 
         /// <summary>
+        /// Gets a list of questions the interface developer can/must answer to open a connection.
+        /// </summary>
+        IList<Question> ConnectionSettingQuestions { get; }
+
+        /// <summary>
         /// Creates a connection according to the given settings.
         /// </summary>
         /// <param name="settings"></param>
