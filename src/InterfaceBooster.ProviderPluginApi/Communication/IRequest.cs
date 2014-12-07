@@ -18,7 +18,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// <summary>
         /// Gets or sets the Request(s) on some SubResources.
         /// </summary>
-        IDictionary<string, IRequest> SubRequests { get; set; }
+        IList<IRequest> SubRequests { get; set; }
 
         #endregion
     }

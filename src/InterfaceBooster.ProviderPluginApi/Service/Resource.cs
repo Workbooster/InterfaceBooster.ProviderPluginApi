@@ -18,11 +18,17 @@ namespace InterfaceBooster.ProviderPluginApi.Service
         public RequestTypeEnum RequestType { get; set; }
 
         /// <summary>
-        /// Gets or sets a Name-Resource dictionary with nested Resources. This Sub-Resources can be used in Sub-Requests.
+        /// Gets or sets a list of nested resources. The Resource.Name and Resource.RequestType are used as key and therefore they must be unique.
         /// The key contains a name that is used in Synery to identify the Resource. 
         /// The name may not contain any white spaces or special chars that are not allowed in synery identifiers.
         /// </summary>
-        public IDictionary<string, Resource> SubResources { get; set; }
+        public IList<Resource> SubResources { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name used to identify the resource if it is used as SubResource.
+        /// The name may not contain any white spaces or special chars that are not allowed in synery identifiers.
+        /// </summary>
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets an user friendly and localizable description about this Resource. 
@@ -30,7 +36,7 @@ namespace InterfaceBooster.ProviderPluginApi.Service
         public LocalizedText Description { get; set; }
 
         /// <summary>
-        /// Gets or sets an internal name used by the Provider Plugin to internaly identify the FilterDefinition (e.g. the table name).
+        /// Gets or sets an internal name used by the Provider Plugin to internaly identify the Resource (e.g. the table name).
         /// (You're free to use this property internally. This value isn't touched or displayed by Interface Booster in any way).
         /// </summary>
         public string InternalIdentifier { get; set; }

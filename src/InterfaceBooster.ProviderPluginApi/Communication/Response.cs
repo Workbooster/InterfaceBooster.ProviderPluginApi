@@ -18,7 +18,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// <summary>
         /// Gets or sets a list of responses to the according SubRequests.
         /// </summary>
-        public IDictionary<string, Response> SubResponses { get; set; }
+        public IList<Response> SubResponses { get; set; }
 
         #endregion
 
