@@ -70,9 +70,14 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             return new Question(name, typeof(T), isRequired);
         }
 
-        public static Question New<T>(string name, string[] path, bool isRequired = false)
+        public static Question New<T>(string name, string[] path, bool isRequired = false, string internalName = null, string description = null)
         {
-            return new Question(name, path, typeof(T), isRequired);
+            Question q = new Question(name, path, typeof(T), isRequired);
+
+            if (internalName != null) q.InternalName = internalName;
+            if (description != null) q.Description = new LocalizedText(description);
+
+            return q;
         }
 
         #endregion
