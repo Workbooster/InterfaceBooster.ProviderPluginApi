@@ -18,18 +18,18 @@ namespace InterfaceBooster.ProviderPluginApi.Service
         /// Gets or sets the name of the endpoint used in Synery.
         /// It may not contain any white spaces or special chars that are not allowed in synery identifiers.
         /// </summary>
-        string Name { get; set; }
+        string Name { get; }
 
         /// <summary>
         /// Gets or sets a list of strings which build a path to this endpoint used in Synery.
         /// The strings may not contain any white spaces or special chars that are not allowed in synery identifiers.
         /// </summary>
-        string[] Path { get; set; }
+        string[] Path { get; }
 
         /// <summary>
         /// Gets or sets an user friendly and localizable description about this Endpoint. 
         /// </summary>
-        LocalizedText Description { get; set; }
+        LocalizedText Description { get; }
 
         #endregion
     }
