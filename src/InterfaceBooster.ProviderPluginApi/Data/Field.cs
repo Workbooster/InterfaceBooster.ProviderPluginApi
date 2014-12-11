@@ -69,6 +69,18 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             Type = type;
         }
 
+        public static Field New<T>(string name, bool isNullable = true, string internalName = null, string description = null)
+        {
+            Field f = new Field(name, typeof(T));
+
+            f.IsNullable = isNullable;
+            f.InternalName = internalName;
+
+            if (description != null) f.Description = description;
+
+            return f;
+        }
+
         #endregion
     }
 }
