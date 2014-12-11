@@ -45,6 +45,15 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             }
         }
 
+        public static Schema New(string internalName = null, IEnumerable<Field> fields = null, string description = null)
+        {
+            return new Schema(fields)
+            {
+                InternalName = internalName,
+                Description = description,
+            };
+        }
+
         #endregion
     }
 }
