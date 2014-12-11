@@ -98,7 +98,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         /// </summary>
         /// <param name="text"></param>
         /// <returns>A new instance</returns>
-        public static explicit operator LocalizedText(string text)
+        public static implicit operator LocalizedText(string text)
         {
             return new LocalizedText(text);
         }
