@@ -39,7 +39,7 @@ namespace InterfaceBooster.ProviderPluginApi.Service
         /// Gets or sets an internal name used by the Provider Plugin to internaly identify the Resource (e.g. the table name).
         /// (You're free to use this property internally. This value isn't touched or displayed by Interface Booster in any way).
         /// </summary>
-        public string InternalIdentifier { get; set; }
+        public string InternalName { get; set; }
 
         #endregion
 
