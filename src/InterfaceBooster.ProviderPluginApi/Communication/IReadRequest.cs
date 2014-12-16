@@ -14,7 +14,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// <summary>
         /// Gets or sets the original resource this request is based on.
         /// </summary>
-        ReadResource Resource { get; set; }
+        new ReadResource Resource { get; set; }
         
         /// <summary>
         /// Gets or sets a list of Answers given to the Questions from the resource.

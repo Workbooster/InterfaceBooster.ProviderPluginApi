@@ -13,7 +13,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// <summary>
         /// Gets or sets the original resource this request is based on.
         /// </summary>
-        SaveResource Resource { get; set; }
+        new SaveResource Resource { get; set; }
 
         /// <summary>
         /// Gets or sets a RecordSet that matches the Schema of the resource (or null if no data is given).

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterfaceBooster.ProviderPluginApi.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,11 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
     public interface IRequest
     {
         #region PROPERTIES
+
+        /// <summary>
+        /// Gets or sets the original resource this request is based on.
+        /// </summary>
+        Resource Resource { get; set; }
         
         /// <summary>
         /// Gets or sets a flag that states the type of the request. This is usefull to make a correct cast.
