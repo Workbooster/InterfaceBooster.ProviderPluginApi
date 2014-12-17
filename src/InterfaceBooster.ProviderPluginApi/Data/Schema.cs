@@ -45,6 +45,38 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             }
         }
 
+        /// <summary>
+        /// Finds the index of the first field matching the given name.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>The index of the first matching item, or -1 if no items match.</returns>
+        public int FindIndexOfFieldByName(string name)
+        {
+            int retVal = 0;
+            foreach (var item in Fields)
+            {
+                if (item.Name == name) return retVal;
+                retVal++;
+            }
+            return -1;
+        }
+
+        /// <summary>
+        /// Finds the index of the first field matching the given internal name.
+        /// </summary>
+        /// <param name="internalName"></param>
+        /// <returns>The index of the first matching item, or -1 if no items match.</returns>
+        public int FindIndexOfFieldByInternalName(string internalName)
+        {
+            int retVal = 0;
+            foreach (var item in Fields)
+            {
+                if (item.InternalName == internalName) return retVal;
+                retVal++;
+            }
+            return -1;
+        }
+
         public static Schema New(string internalName = null, IEnumerable<Field> fields = null, string description = null)
         {
             return new Schema(fields)
