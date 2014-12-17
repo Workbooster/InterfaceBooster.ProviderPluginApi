@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Helpers.cs" />
     <Compile Include="Communication\CreateResponse.cs" />
     <Compile Include="Communication\DeleteResponse.cs" />
     <Compile Include="Communication\ExecuteResponse.cs" />
