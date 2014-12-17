@@ -58,6 +58,44 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             _Data = new List<object[]>(data);
         }
 
+        /// <summary>
+        /// Gets or sets a field value of a record on the given recordIndex and with the given fieldName.
+        /// </summary>
+        /// <param name="recordIndex"></param>
+        /// <param name="fieldName"></param>
+        /// <returns></returns>
+        public object this[int recordIndex, string fieldName]
+        {
+            get
+            {
+                if (recordIndex >= _Data.Count) 
+                    throw new IndexOutOfRangeException(String.Format(
+                        "No record at index '{0}'. The Record Set '{1}' only has '{2}' record(s).", recordIndex, Schema.InternalName, _Data.Count));
+
+                int fieldIndex = Schema.FindIndexOfFieldByName(fieldName);
+
+                if (fieldIndex == -1)
+                    throw new Exception(String.Format(
+                        "No field with name '{0}' found in Record Set '{1}'.", recordIndex, Schema.InternalName));
+
+                return _Data[recordIndex][fieldIndex];
+            }
+            set
+            {
+                if (recordIndex >= _Data.Count)
+                    throw new IndexOutOfRangeException(String.Format(
+                        "No record at index '{0}'. The Record Set '{1}' only has '{2}' record(s).", recordIndex, Schema.InternalName, _Data.Count));
+
+                int fieldIndex = Schema.FindIndexOfFieldByName(fieldName);
+
+                if (fieldIndex == -1)
+                    throw new Exception(String.Format(
+                        "No field with name '{0}' found in Record Set '{1}'.", recordIndex, Schema.InternalName));
+
+                _Data[recordIndex][fieldIndex] = value;
+            }
+        }
+
         #region IMPLEMENTATION OF IList<object[]>
 
         public int IndexOf(object[] item)
