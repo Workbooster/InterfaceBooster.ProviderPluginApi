@@ -53,13 +53,10 @@ namespace InterfaceBooster.ProviderPluginApi.Data
                 throw new ArgumentNullException("schema");
 
             _Schema = schema;
+            _CurrentAddPosition = 0;
+            _Data = new object[Schema.Fields.Count];
 
-            if (data == null)
-            {
-                data = new object[Schema.Fields.Count];
-                SetData(data, false);
-            }
-            else
+            if (data != null)
             {
                 SetData(data, true);
             }
@@ -217,6 +214,9 @@ namespace InterfaceBooster.ProviderPluginApi.Data
                 {
                     SetValue(i, _Data[i + 1], true);
                 }
+
+                _Data = _Data.Take(Count - 1).ToArray();
+
                 _CurrentAddPosition--;
             }
         }
@@ -285,36 +285,38 @@ namespace InterfaceBooster.ProviderPluginApi.Data
                 {
                     object value = data[i];
                     SetValue(i, value, true);
+                    _CurrentAddPosition++;
                 }
             }
-
-            _Data = data;
-            _CurrentAddPosition = 0;
         }
 
         private void SetValue(int index, object value, bool validate)
         {
             Field field = Schema.Fields[index];
 
-            if (value != null)
+            if (validate)
             {
-                if (value.GetType() != field.Type)
-                {
-                    throw new RecordSetException(Schema, String.Format(
-                        "Datatype missmatch. The field '{0}' expects a value of type '{1}'. Type given: '{2}'.",
-                        field.Name, field.Type.Name, value.GetType().Name));
+                if (value != null)
+                { 
+                    if (value.GetType() != field.Type)
+                    {
+                        throw new RecordSetException(Schema, String.Format(
+                            "Datatype missmatch. The field '{0}' expects a value of type '{1}'. Type given: '{2}'.",
+                            field.Name, field.Type.Name, value.GetType().Name));
+                    }
                 }
-            }
-            else
-            {
-                if (field.IsNullable == false)
+                else
                 {
-                    throw new RecordSetException(Schema, String.Format(
-                        "NULL value not allowed. The field '{0}' expects a value of type '{1}'.",
-                        field.Name, field.Type.Name));
+                    if (field.IsNullable == false)
+                    {
+                        throw new RecordSetException(Schema, String.Format(
+                            "NULL value not allowed. The field '{0}' expects a value of type '{1}'.",
+                            field.Name, field.Type.Name));
+                    }
                 }
             }
 
+            _Data[index] = value;
         }
 
         #endregion

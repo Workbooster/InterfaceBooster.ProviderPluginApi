@@ -77,6 +77,27 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             return -1;
         }
 
+        /// <summary>
+        /// Clones an existing schema. Copies all primitive values and creates a new list for the fields.
+        /// </summary>
+        /// <param name="originalSchema"></param>
+        /// <returns></returns>
+        public Schema Clone()
+        {
+            return new Schema(new List<Field>(this.Fields))
+            {
+                InternalName = this.InternalName,
+                Description = this.Description,
+            };
+        }
+
+        /// <summary>
+        /// Creates a new schema based on the given parameters..
+        /// </summary>
+        /// <param name="internalName"></param>
+        /// <param name="fields"></param>
+        /// <param name="description"></param>
+        /// <returns></returns>
         public static Schema New(string internalName = null, IEnumerable<Field> fields = null, string description = null)
         {
             return new Schema(fields)

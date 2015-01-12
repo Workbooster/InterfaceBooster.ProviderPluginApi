@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterfaceBooster.ProviderPluginApi.ErrorHandling;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -94,6 +95,39 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             return this;
         }
 
+        public RecordSet Clone()
+        {
+            Schema schema = this.Schema.Clone();
+            RecordSet recordSet = new RecordSet(schema);
+
+            foreach (var record in this)
+            {
+                recordSet.Add(new Record(schema, record.ItemArray));
+            }
+
+            return recordSet;
+        }
+
+        public void RemoveField(Field field)
+        {
+            int index = Schema.Fields.IndexOf(field);
+
+            RemoveFieldAt(index);
+        }
+
+        public void RemoveFieldAt(int index)
+        {
+            if (index != -1)
+            {
+                Schema.Fields.RemoveAt(index);
+
+                foreach (var record in _Data)
+                {
+                    record.RemoveAt(index);
+                }
+            }
+        }
+
         /// <summary>
         /// Gets or sets a field value of a record on the given recordIndex and with the given fieldName.
         /// </summary>
@@ -104,7 +138,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         {
             get
             {
-                if (recordIndex >= _Data.Count) 
+                if (recordIndex >= _Data.Count)
                     throw new IndexOutOfRangeException(String.Format(
                         "No record at index '{0}'. The Record Set '{1}' only has '{2}' record(s).", recordIndex, Schema.InternalName, _Data.Count));
 
@@ -151,6 +185,9 @@ namespace InterfaceBooster.ProviderPluginApi.Data
 
         public void Add(Record item)
         {
+            if (item.Schema != Schema)
+                throw new RecordSetException(Schema, "The schema of the given record is different to the schema of the record set.");
+
             _Data.Add(item);
         }
 
