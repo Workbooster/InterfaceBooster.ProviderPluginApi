@@ -26,7 +26,12 @@ namespace InterfaceBooster.ProviderPluginApi.Service
 
         #region PUBLIC METHODS
 
-        public ExecuteResource() : base(Communication.RequestTypeEnum.Execute) { }
+        public ExecuteResource()
+            : base(Communication.RequestTypeEnum.Execute)
+        {
+            Questions = new List<Question>();
+            ReturnValues = new List<ValueDefinition>();
+        }
 
         #endregion
     }

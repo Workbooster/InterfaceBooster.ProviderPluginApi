@@ -23,7 +23,7 @@ namespace InterfaceBooster.ProviderPluginApi.Service
         /// These parameters can/must be set by Interface Booster on a request.
         /// </summary>
         public IList<Question> Questions { get; set; }
-        
+
         /// <summary>
         /// Gets or sets a list of filter-fields that can be used to specify filters for reading the data.
         /// </summary>
@@ -33,7 +33,12 @@ namespace InterfaceBooster.ProviderPluginApi.Service
 
         #region PUBLIC METHODS
 
-        public ReadResource() : base(Communication.RequestTypeEnum.Read) { }
+        public ReadResource()
+            : base(Communication.RequestTypeEnum.Read)
+        {
+            Questions = new List<Question>();
+            FilterDefinitions = new List<FilterDefinition>();
+        }
 
         #endregion
     }

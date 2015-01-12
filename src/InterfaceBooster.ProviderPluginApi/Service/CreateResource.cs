@@ -27,7 +27,11 @@ namespace InterfaceBooster.ProviderPluginApi.Service
 
         #region PUBLIC METHODS
 
-        public CreateResource() : base(Communication.RequestTypeEnum.Create) { }
+        public CreateResource()
+            : base(Communication.RequestTypeEnum.Create)
+        {
+            Questions = new List<Question>();
+        }
 
         #endregion
     }

@@ -22,6 +22,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data.Filter
         public FilterGroup(FilterTypeEnum filterType)
             : base(filterType)
         {
+            FilterItems = new List<Filter>();
         }
 
         #endregion

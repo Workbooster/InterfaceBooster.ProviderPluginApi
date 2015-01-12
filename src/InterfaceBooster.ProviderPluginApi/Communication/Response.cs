@@ -27,6 +27,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         public Response(RequestTypeEnum type)
         {
             RequestType = type;
+            SubResponses = new List<Response>();
         }
 
         #endregion

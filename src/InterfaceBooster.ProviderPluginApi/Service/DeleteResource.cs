@@ -33,7 +33,12 @@ namespace InterfaceBooster.ProviderPluginApi.Service
 
         #region PUBLIC METHODS
 
-        public DeleteResource() : base(Communication.RequestTypeEnum.Delete) { }
+        public DeleteResource()
+            : base(Communication.RequestTypeEnum.Delete)
+        {
+            Questions = new List<Question>();
+            FilterDefinitions = new List<FilterDefinition>();
+        }
 
         #endregion
     }

@@ -28,6 +28,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
             : base(Communication.RequestTypeEnum.Execute)
         {
             Request = request;
+            Values = new Dictionary<string, object>();
         }
 
         #endregion

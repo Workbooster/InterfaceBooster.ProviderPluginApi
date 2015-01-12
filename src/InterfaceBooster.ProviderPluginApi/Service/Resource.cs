@@ -48,6 +48,7 @@ namespace InterfaceBooster.ProviderPluginApi.Service
         public Resource(RequestTypeEnum type)
         {
             RequestType = type;
+            SubResources = new List<Resource>();
         }
 
         #endregion
