@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceBooster.ProviderPluginApi", "InterfaceBooster.ProviderPluginApi\InterfaceBooster.ProviderPluginApi.csproj", "{A0C7623E-3127-4497-AE76-DF8AD62DB9D3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{7680CE99-C7BF-4B18-B74E-4F4409FE4751}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceBooster.Test.ProviderPluginApi", "InterfaceBooster.Test.ProviderPluginApi\InterfaceBooster.Test.ProviderPluginApi.csproj", "{3FD65E91-C077-4C2B-853F-0C260E837029}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,8 +17,15 @@ Global
 		{A0C7623E-3127-4497-AE76-DF8AD62DB9D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0C7623E-3127-4497-AE76-DF8AD62DB9D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0C7623E-3127-4497-AE76-DF8AD62DB9D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FD65E91-C077-4C2B-853F-0C260E837029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FD65E91-C077-4C2B-853F-0C260E837029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FD65E91-C077-4C2B-853F-0C260E837029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FD65E91-C077-4C2B-853F-0C260E837029}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3FD65E91-C077-4C2B-853F-0C260E837029} = {7680CE99-C7BF-4B18-B74E-4F4409FE4751}
 	EndGlobalSection
 EndGlobal
