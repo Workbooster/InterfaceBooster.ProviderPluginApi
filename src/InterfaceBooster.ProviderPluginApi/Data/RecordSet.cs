@@ -10,15 +10,15 @@ namespace InterfaceBooster.ProviderPluginApi.Data
     /// A record set is a container for transferring data from the Provider Plugin to the Interface Booster or vice versa. 
     /// It implements the IList interface. A record set is comparable to a table with some columns and some rows. 
     /// The definition of the columns is represented by a list of fields in the related Schema. The record set consists of 
-    /// a list of object-arrays. Each object-array represents one row. The size of the object-array and the number of fields 
+    /// a list of Records. Each Record represents one row. The size of the Record and the number of fields 
     /// in the Schema must always be equal. The specified data type in the schema fields must also match the data type of 
     /// the corresponding items from the object-arrays.
     /// </summary>
-    public class RecordSet : IList<object[]>
+    public class RecordSet : IList<Record>
     {
         #region MEMBERS
 
-        private IList<object[]> _Data;
+        private IList<Record> _Data;
 
         #endregion
 
@@ -35,17 +35,40 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         /// </summary>
         /// <param name="schema"></param>
         /// <param name="data"></param>
-        public RecordSet(Schema schema, IEnumerable<object[]> data = null)
+        public RecordSet(Schema schema, IEnumerable<Record> data = null)
         {
+            if (schema == null)
+                throw new ArgumentNullException("schema");
+
             Schema = schema;
 
             if (data == null)
             {
-                _Data = new List<object[]>();
+                _Data = new List<Record>();
             }
             else
             {
-                _Data = new List<object[]>(data);
+                _Data = new List<Record>(data);
+            }
+        }
+
+        /// <summary>
+        /// A record set is a container for transferring data from the Provider Plugin to the Interface Booster or vice versa. 
+        /// It implements the IList interface. A record set is comparable to a table with some columns and some rows. 
+        /// </summary>
+        /// <param name="schema"></param>
+        /// <param name="data">A list of object-arrays. The object-arrays are converted to a Record and must match the Schema.</param>
+        public RecordSet(Schema schema, IEnumerable<object[]> data)
+        {
+            if (schema == null)
+                throw new ArgumentNullException("schema");
+
+            Schema = schema;
+            _Data = new List<Record>();
+
+            foreach (var item in data)
+            {
+                NewRecord(new Record(Schema, item));
             }
         }
 
@@ -53,9 +76,22 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         /// Sets the data of the record set.
         /// </summary>
         /// <param name="data"></param>
-        public void SetData(IEnumerable<object[]> data)
+        public void SetData(IEnumerable<Record> data)
         {
-            _Data = new List<object[]>(data);
+            _Data = new List<Record>(data);
+        }
+
+        /// <summary>
+        /// Creates and adds a new record and allows a fluid API like:
+        /// rs.NewRecord(1, "bla").NewRecord(2, "aha").NewRecord(3, "ok");
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public RecordSet NewRecord(params object[] args)
+        {
+            Add(new Record(Schema, args));
+
+            return this;
         }
 
         /// <summary>
@@ -72,13 +108,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data
                     throw new IndexOutOfRangeException(String.Format(
                         "No record at index '{0}'. The Record Set '{1}' only has '{2}' record(s).", recordIndex, Schema.InternalName, _Data.Count));
 
-                int fieldIndex = Schema.FindIndexOfFieldByName(fieldName);
-
-                if (fieldIndex == -1)
-                    throw new Exception(String.Format(
-                        "No field with name '{0}' found in Record Set '{1}'.", recordIndex, Schema.InternalName));
-
-                return _Data[recordIndex][fieldIndex];
+                return _Data[recordIndex][fieldName];
             }
             set
             {
@@ -86,24 +116,18 @@ namespace InterfaceBooster.ProviderPluginApi.Data
                     throw new IndexOutOfRangeException(String.Format(
                         "No record at index '{0}'. The Record Set '{1}' only has '{2}' record(s).", recordIndex, Schema.InternalName, _Data.Count));
 
-                int fieldIndex = Schema.FindIndexOfFieldByName(fieldName);
-
-                if (fieldIndex == -1)
-                    throw new Exception(String.Format(
-                        "No field with name '{0}' found in Record Set '{1}'.", recordIndex, Schema.InternalName));
-
-                _Data[recordIndex][fieldIndex] = value;
+                _Data[recordIndex][fieldName] = value;
             }
         }
 
-        #region IMPLEMENTATION OF IList<object[]>
+        #region IMPLEMENTATION OF IList<Record>
 
-        public int IndexOf(object[] item)
+        public int IndexOf(Record item)
         {
             return _Data.IndexOf(item);
         }
 
-        public void Insert(int index, object[] item)
+        public void Insert(int index, Record item)
         {
             _Data.Insert(index, item);
         }
@@ -113,7 +137,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             _Data.RemoveAt(index);
         }
 
-        public object[] this[int index]
+        public Record this[int index]
         {
             get
             {
@@ -125,7 +149,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             }
         }
 
-        public void Add(object[] item)
+        public void Add(Record item)
         {
             _Data.Add(item);
         }
@@ -135,12 +159,12 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             _Data.Clear();
         }
 
-        public bool Contains(object[] item)
+        public bool Contains(Record item)
         {
             return _Data.Contains(item);
         }
 
-        public void CopyTo(object[][] array, int arrayIndex)
+        public void CopyTo(Record[] array, int arrayIndex)
         {
             _Data.CopyTo(array, arrayIndex);
         }
@@ -155,12 +179,12 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             get { return _Data.IsReadOnly; }
         }
 
-        public bool Remove(object[] item)
+        public bool Remove(Record item)
         {
             return _Data.Remove(item);
         }
 
-        public IEnumerator<object[]> GetEnumerator()
+        public IEnumerator<Record> GetEnumerator()
         {
             return _Data.GetEnumerator();
         }

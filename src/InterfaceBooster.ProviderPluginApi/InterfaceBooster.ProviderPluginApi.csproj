@@ -71,9 +71,11 @@
     <Compile Include="Data\Filter\SingleValueFilterCondition.cs" />
     <Compile Include="Data\LocalizedText.cs" />
     <Compile Include="Data\Question.cs" />
+    <Compile Include="Data\Record.cs" />
     <Compile Include="Data\RecordSet.cs" />
     <Compile Include="Data\Schema.cs" />
     <Compile Include="Data\ValueDefinition.cs" />
+    <Compile Include="ErrorHandling\RecordSetException.cs" />
     <Compile Include="IProviderConnection.cs" />
     <Compile Include="IProviderPlugin.cs" />
     <Compile Include="IHost.cs" />
