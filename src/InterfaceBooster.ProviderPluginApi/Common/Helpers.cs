@@ -11,13 +11,18 @@ namespace InterfaceBooster.ProviderPluginApi.Common
     {
         public static T FindRequestByResourceName<T>(this IEnumerable<IRequest> listOfRequests, string resourceName) where T : IRequest
         {
-            T request = (from r in listOfRequests
-                         where r is T
-                         && r.Resource != null
-                         && r.Resource.Name == resourceName
-                         select (T)r).FirstOrDefault();
+            if (listOfRequests != null)
+            {
+                T request = (from r in listOfRequests
+                             where r is T
+                             && r.Resource != null
+                             && r.Resource.Name == resourceName
+                             select (T)r).FirstOrDefault();
 
-            return request;
+                return request;
+            }
+
+            return default(T);
         }
     }
 }
