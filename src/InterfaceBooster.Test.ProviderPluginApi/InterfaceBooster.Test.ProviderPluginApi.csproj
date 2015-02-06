@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\ConnectionSettings_Test\Getting_Answers_Works.cs" />
     <Compile Include="Data\RecordSet_Test\Adding_Records_Works.cs" />
     <Compile Include="Data\RecordSet_Test\Changing_Schema_Of_RecordSet_Works.cs" />
     <Compile Include="Data\RecordSet_Test\Creating_RecordSet_Works.cs" />
