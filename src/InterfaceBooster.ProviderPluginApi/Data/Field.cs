@@ -63,10 +63,11 @@ namespace InterfaceBooster.ProviderPluginApi.Data
 
         #region PUBLIC METHODS
 
-        public Field(string name, Type type)
+        public Field(string name, Type type, bool isNullable = true)
         {
             Name = name;
             Type = type;
+            _IsNullable = isNullable;
         }
 
         public static Field New<T>(string name, bool isNullable = true, string internalName = null, string description = null)
