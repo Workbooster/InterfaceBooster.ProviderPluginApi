@@ -47,6 +47,7 @@
     <Compile Include="Data\RecordSet_Test\Adding_Records_Works.cs" />
     <Compile Include="Data\RecordSet_Test\Changing_Schema_Of_RecordSet_Works.cs" />
     <Compile Include="Data\RecordSet_Test\Creating_RecordSet_Works.cs" />
+    <Compile Include="Data\Record_Test\Using_IList_Interface_Works.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
