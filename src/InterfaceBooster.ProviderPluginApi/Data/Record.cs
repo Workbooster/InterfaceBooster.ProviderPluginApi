@@ -53,8 +53,9 @@ namespace InterfaceBooster.ProviderPluginApi.Data
                 throw new ArgumentNullException("schema");
 
             _Schema = schema;
-            _CurrentAddPosition = 0;
-            _Data = new object[Schema.Fields.Count];
+
+            // reset everything
+            Clear();
 
             if (data != null)
             {
@@ -128,7 +129,6 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             if (_CurrentAddPosition < _Data.Length)
             {
                 SetValue(_CurrentAddPosition, value, true);
-                _CurrentAddPosition++;
 
                 return (_CurrentAddPosition - 1);
             }
@@ -141,47 +141,52 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         public void Clear()
         {
             _CurrentAddPosition = 0;
+            _Data = new object[Schema.Fields.Count];
         }
 
         public bool Contains(object value)
         {
-            bool inList = false;
-            for (int i = 0; i < Count; i++)
-            {
-                if (_Data[i] == value)
-                {
-                    inList = true;
-                    break;
-                }
-            }
-            return inList;
+            return IndexOf(value) != -1 ? true : false;
         }
 
         public int IndexOf(object value)
         {
-            int itemIndex = -1;
             for (int i = 0; i < Count; i++)
             {
-                if (_Data[i] == value)
+                // check for null value
+                if (value == null)
                 {
-                    itemIndex = i;
-                    break;
+                    if (_Data[i] == null)
+                    {
+                        return i;
+                    }
+                }
+                else
+                {
+                    // compare with equals method
+                    if (value.Equals(_Data[i]))
+                    {
+                        return i;
+                    }
                 }
             }
-            return itemIndex;
+
+            return -1;
         }
 
         public void Insert(int index, object value)
         {
-            if ((_CurrentAddPosition + 1 <= _Data.Length) && (index < Count) && (index >= 0))
+            if ((_CurrentAddPosition + 1 <= Count) && (index < Count) && (index >= 0))
             {
-                _CurrentAddPosition++;
-
                 for (int i = Count - 1; i > index; i--)
                 {
                     SetValue(i, _Data[i - 1], true);
                 }
+
                 SetValue(index, value, true);
+
+                // overwrite current position
+                _CurrentAddPosition = index + 1;
             }
         }
 
@@ -239,7 +244,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         {
             get
             {
-                return _CurrentAddPosition;
+                return _Data.Length;
             }
         }
 
@@ -280,13 +285,12 @@ namespace InterfaceBooster.ProviderPluginApi.Data
                         "The schema '{0}' ({1} fields) doesn't have the same size as the given array ({2} values).",
                         Schema.InternalName, Schema.Fields.Count, data.Count()));
                 }
+            }
 
-                for (int i = 0; i < Schema.Fields.Count; i++)
-                {
-                    object value = data[i];
-                    SetValue(i, value, true);
-                    _CurrentAddPosition++;
-                }
+            for (int i = 0; i < Schema.Fields.Count; i++)
+            {
+                object value = data[i];
+                SetValue(i, value, validate);
             }
         }
 
@@ -297,7 +301,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             if (validate)
             {
                 if (value != null)
-                { 
+                {
                     if (value.GetType() != field.Type)
                     {
                         throw new RecordSetException(Schema, String.Format(
@@ -314,6 +318,12 @@ namespace InterfaceBooster.ProviderPluginApi.Data
                             field.Name, field.Type.Name));
                     }
                 }
+            }
+
+            if (index >= _CurrentAddPosition)
+            {
+                // update current position
+                _CurrentAddPosition = index + 1;
             }
 
             _Data[index] = value;
