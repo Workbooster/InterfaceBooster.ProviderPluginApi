@@ -154,6 +154,11 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             }
         }
 
+        public override string ToString()
+        {
+            return String.Format("RecordSet '{0}' with {1} records and {2} fields", Schema.InternalName, _Data.Count, Schema.Fields.Count);
+        }
+
         #region IMPLEMENTATION OF IList<Record>
 
         public int IndexOf(Record item)

@@ -107,6 +107,11 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             };
         }
 
+        public override string ToString()
+        {
+            return String.Format("Schema '{0}' with {1} fields", InternalName, Fields.Count);
+        }
+
         #endregion
     }
 }
