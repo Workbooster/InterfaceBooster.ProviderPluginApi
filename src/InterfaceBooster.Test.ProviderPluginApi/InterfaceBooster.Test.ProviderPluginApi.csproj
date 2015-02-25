@@ -49,6 +49,7 @@
     <Compile Include="Data\RecordSet_Test\Creating_RecordSet_Works.cs" />
     <Compile Include="Data\Record_Test\Using_IList_Interface_Works.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProviderPluginApi_Test\Synery_Identifier_Regex_Works.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InterfaceBooster.ProviderPluginApi\InterfaceBooster.ProviderPluginApi.csproj">
