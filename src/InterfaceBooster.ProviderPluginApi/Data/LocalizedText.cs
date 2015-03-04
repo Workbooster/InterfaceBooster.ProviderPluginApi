@@ -40,11 +40,15 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         #endregion
 
         #region PUBLIC METHODS
-        
+
+        public LocalizedText()
+        {
+            Initialize();
+        }
+
         public LocalizedText(string defaultText)
         {
-            Default = defaultText;
-            _Translations = new Dictionary<string, string>();
+            Initialize(defaultText);
         }
 
         /// <summary>
@@ -101,6 +105,20 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         public static implicit operator LocalizedText(string text)
         {
             return new LocalizedText(text);
+        }
+
+        #endregion
+
+        #region INTERNAL METHODS
+
+        /// <summary>
+        /// Initializes a new instance of this class (used by constructors).
+        /// </summary>
+        /// <param name="defaultText"></param>
+        private void Initialize(string defaultText = "")
+        {
+            Default = defaultText;
+            _Translations = new Dictionary<string, string>();
         }
 
         #endregion
