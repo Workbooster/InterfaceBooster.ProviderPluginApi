@@ -27,7 +27,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         /// <summary>
         /// Gets or sets a list of columns.
         /// </summary>
-        public IList<Field> Fields { get; set; }
+        public IList<Field> Fields { get; private set; }
 
         #endregion
 
