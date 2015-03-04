@@ -33,16 +33,14 @@ namespace InterfaceBooster.ProviderPluginApi.Data
 
         #region PUBLIC METHODS
 
+        public Schema()
+        {
+            Initialize();
+        }
+
         public Schema(IEnumerable<Field> fields = null)
         {
-            if (fields == null)
-            {
-                Fields = new List<Field>();
-            }
-            else
-            {
-                Fields = new List<Field>(fields);
-            }
+            Initialize(fields);
         }
 
         /// <summary>
@@ -110,6 +108,26 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         public override string ToString()
         {
             return String.Format("Schema '{0}' with {1} fields", InternalName, Fields.Count);
+        }
+
+        #endregion
+
+        #region INTERNAL METHODS
+
+        /// <summary>
+        /// Initializes a new instance of this class (used by the constructor).
+        /// </summary>
+        /// <param name="fields"></param>
+        private void Initialize(IEnumerable<Field> fields = null)
+        {
+            if (fields == null)
+            {
+                Fields = new List<Field>();
+            }
+            else
+            {
+                Fields = new List<Field>(fields);
+            }
         }
 
         #endregion
