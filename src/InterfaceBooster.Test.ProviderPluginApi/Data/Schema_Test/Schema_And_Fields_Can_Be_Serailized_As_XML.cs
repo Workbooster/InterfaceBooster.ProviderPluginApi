@@ -90,5 +90,21 @@ namespace InterfaceBooster.Test.ProviderPluginApi.Data.Schema_Test
                 Assert.IsTrue(_Schema.Fields[i].Description.Equals(schema.Fields[i].Description));
             }
         }
+
+        public void Deserialization_Of_LocalizedText_Fields_Without_Transalations_Node_Works()
+        {
+            Schema schema;
+            string xml = "<?xml version=\"1.0\" encoding=\"utf-16\"?><Schema xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><Description Default=\"\"></Description><Fields><Field Name=\"Name\" Type=\"System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\" IsNullable=\"true\" IsKey=\"false\" IsForeignKey=\"false\"><Description Default=\"Some description\"></Description><ForeignKeyDescription Default=\"\"><Translations /></ForeignKeyDescription></Field></Fields></Schema>";
+
+            XmlSerializer s = new XmlSerializer(typeof(Schema));
+
+            using (StringReader stringReader = new StringReader(xml))
+            {
+                schema = (Schema)s.Deserialize(stringReader);
+            }
+
+            Assert.AreEqual(1, schema.Fields.Count);
+            Assert.AreEqual("Some description", schema.Fields[0].Description.Default);
+        }
     }
 }
