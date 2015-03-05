@@ -49,19 +49,6 @@ namespace InterfaceBooster.Test.ProviderPluginApi.Data.Schema_Test
         [Test]
         public void Serializing_Schema_As_XML_Works()
         {
-            Schema schema = new Schema();
-
-            Field id = Field.New<int>("Id");
-            id.Description = new LocalizedText("ID");
-            id.Description.Add("en", "Identifier");
-            id.Description.Add("de", "Identifikator");
-
-            schema.Fields.Add(id);
-            schema.Fields.Add(Field.New<string>("Name"));
-            schema.Fields.Add(Field.New<bool>("IsMale"));
-            schema.Fields.Add(Field.New<DateTime>("DateOfBirth"));
-
-
             StringBuilder sb = new StringBuilder();
 
             using (XmlWriter xmlWriter = XmlWriter.Create(sb, new XmlWriterSettings() { /*Indent = true, NewLineHandling = NewLineHandling.Entitize*/ }))
