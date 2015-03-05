@@ -3,31 +3,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace InterfaceBooster.ProviderPluginApi.Data
 {
     /// <summary>
     /// A Schema describes the structure of a RecordSet. Each field represents a column in a RecordSet.
     /// </summary>
+    [Serializable]
     public class Schema
     {
+        #region MEMBERS
+
+        private LocalizedText _Description;
+        private SchemaFieldList _Fields;
+
+        #endregion
+
         #region PROPERTIES
 
         /// <summary>
         /// Gets or sets an user friendly and localizable description about this Schema. 
         /// </summary>
-        public LocalizedText Description { get; set; }
+        [XmlElement("Description")]
+        public LocalizedText Description
+        {
+            get
+            {
+                if (_Description == null) _Description = new LocalizedText();
+                return _Description;
+            }
+            set { _Description = value; }
+        }
 
         /// <summary>
         /// Gets or sets an internal name used by the Provider Plugin to internaly identify the Schema (e.g. the table name).
         /// (You can use it or not - this value isn't touched by Interface Booster in any way).
         /// </summary>
+        [XmlAttribute("InternalName")]
         public string InternalName { get; set; }
 
         /// <summary>
         /// Gets or sets a list of columns.
         /// </summary>
-        public IList<Field> Fields { get; private set; }
+        [XmlArray(ElementName = "Fields")]
+        [XmlArrayItem(ElementName = "Field")]
+        public SchemaFieldList Fields
+        {
+            get
+            {
+                return _Fields;
+            }
+            set
+            {
+                _Fields = value;
+                _Fields.FieldAdded += Fields_FieldAdded;
+
+                foreach (var field in _Fields)
+                {
+                    AssignField(field);
+                }
+            }
+        }
 
         #endregion
 
@@ -117,17 +154,33 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         /// <summary>
         /// Initializes a new instance of this class (used by the constructor).
         /// </summary>
-        /// <param name="fields"></param>
-        private void Initialize(IEnumerable<Field> fields = null)
+        /// <param name="listOfFields"></param>
+        private void Initialize(IEnumerable<Field> listOfFields = null)
         {
-            if (fields == null)
+            _Fields = new SchemaFieldList();
+            _Fields.FieldAdded += Fields_FieldAdded;
+
+            if (listOfFields != null)
             {
-                Fields = new List<Field>();
+                _Fields.AddRange(listOfFields);
             }
-            else
-            {
-                Fields = new List<Field>(fields);
-            }
+        }
+
+        private void Fields_FieldAdded(SchemaFieldList list, Field field)
+        {
+            AssignField(field);
+        }
+
+        private void AssignField(Field field)
+        {
+            // validate the field
+            if (String.IsNullOrEmpty(field.Name))
+                throw new ArgumentException("A Field added to a Schema must have a name (property 'Name').");
+            if (field.Type == null)
+                throw new ArgumentException("A Field added to a Schema must have a data type (property 'Type').");
+
+            // set the schema as it's parent
+            field.Schema = this;
         }
 
         #endregion

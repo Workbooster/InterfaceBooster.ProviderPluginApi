@@ -4,16 +4,20 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace InterfaceBooster.ProviderPluginApi.Data
 {
     /// <summary>
     /// Stores translated strings. As keys the default .NET culture names (e.g. "en-US", "de-CH") are used.
     /// </summary>
-    public class LocalizedText
+    [Serializable]
+    [XmlRoot("LocalizedText")]
+    public class LocalizedText : IXmlSerializable
     {
         #region MEMBERS
-        
+
         private Dictionary<string, string> _Translations;
 
         #endregion
@@ -24,12 +28,13 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         /// Gets or sets the default translation.
         /// </summary>
         public string Default { get; set; }
-        
+
         /// <summary>
         /// Gets a dictionary containing all available translations (without default).
         /// Key = CultureName / Value = translated text.
         /// </summary>
-        public IReadOnlyDictionary<string, string> Translations
+        [XmlIgnore]
+        public Dictionary<string, string> Translations
         {
             get
             {
@@ -106,6 +111,113 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         {
             return new LocalizedText(text);
         }
+
+        #region IMPLEMENTATION OF IXmlSerializable
+
+        public System.Xml.Schema.XmlSchema GetSchema()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReadXml(System.Xml.XmlReader reader)
+        {
+            Initialize();
+
+            if (reader.MoveToContent() == XmlNodeType.Element)
+            {
+                Default = reader["Default"];
+
+                if (reader.ReadToDescendant("Translations"))
+                {
+                    if (reader.ReadToDescendant("Translation"))
+                    {
+                        while (reader.MoveToContent() == XmlNodeType.Element && reader.LocalName == "Translation")
+                        {
+                            _Translations.Add(reader["LanguageCode"], reader.ReadElementContentAsString());
+                        }
+                    }
+                    reader.Read();
+                }
+                reader.Read();
+            }
+        }
+
+        public void WriteXml(System.Xml.XmlWriter writer)
+        {
+            writer.WriteAttributeString("Default", Default);
+
+            // write translations in a nested node
+            writer.WriteStartElement("Translations");
+
+            foreach (var tranlation in Translations)
+            {
+                writer.WriteStartElement("Translation");
+                writer.WriteAttributeString("LanguageCode", tranlation.Key);
+                writer.WriteValue(tranlation.Value);
+                writer.WriteEndElement();
+            }
+
+            writer.WriteEndElement();
+        }
+
+        #endregion
+
+        #region IMPLEMENTATION OF EQUALITY CHECK LOGIC
+
+        public override bool Equals(System.Object obj)
+        {
+            if (obj != null && obj is LocalizedText)
+            {
+                return Equals((LocalizedText)obj);
+            }
+
+            return false;
+        }
+
+        public bool Equals(LocalizedText p)
+        {
+            if (this.Default != p.Default)
+            {
+                return false;
+            }
+
+            if (_Translations != null)
+            {
+                if (p.Translations == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    foreach (var item in this._Translations)
+                    {
+                        if (p.Translations.Contains(item) == false)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            int hash = this.Default.GetHashCode();
+
+            if (_Translations != null)
+            {
+                foreach (var item in _Translations)
+                {
+                    hash = hash ^ item.GetHashCode();
+                }
+            }
+
+            return hash;
+        }
+
+        #endregion
 
         #endregion
 

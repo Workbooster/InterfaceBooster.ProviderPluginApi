@@ -74,6 +74,7 @@
     <Compile Include="Data\Record.cs" />
     <Compile Include="Data\RecordSet.cs" />
     <Compile Include="Data\Schema.cs" />
+    <Compile Include="Data\SchemaFieldList.cs" />
     <Compile Include="Data\ValueDefinition.cs" />
     <Compile Include="ErrorHandling\RecordSetException.cs" />
     <Compile Include="IProviderConnection.cs" />
