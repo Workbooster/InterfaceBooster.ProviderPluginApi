@@ -146,18 +146,21 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         {
             writer.WriteAttributeString("Default", Default);
 
-            // write translations in a nested node
-            writer.WriteStartElement("Translations");
-
-            foreach (var tranlation in Translations)
+            if (Translations != null && Translations.Count > 0)
             {
-                writer.WriteStartElement("Translation");
-                writer.WriteAttributeString("LanguageCode", tranlation.Key);
-                writer.WriteValue(tranlation.Value);
+                // write translations in a nested node
+                writer.WriteStartElement("Translations");
+
+                foreach (var tranlation in Translations)
+                {
+                    writer.WriteStartElement("Translation");
+                    writer.WriteAttributeString("LanguageCode", tranlation.Key);
+                    writer.WriteValue(tranlation.Value);
+                    writer.WriteEndElement();
+                }
+
                 writer.WriteEndElement();
             }
-
-            writer.WriteEndElement();
         }
 
         #endregion
