@@ -19,7 +19,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// <summary>
         /// Gets or sets a list of Answers given to the Questions from the resource.
         /// </summary>
-        IEnumerable<Answer> Answers { get; set; }
+        AnswerList Answers { get; set; }
 
         /// <summary>
         /// Gets or sets a list of fields from the original Schema of the ReadResource that are expected to be loaded and returned within the response.

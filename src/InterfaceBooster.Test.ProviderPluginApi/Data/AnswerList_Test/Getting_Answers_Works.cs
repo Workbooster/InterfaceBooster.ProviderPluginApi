@@ -6,31 +6,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InterfaceBooster.Test.ProviderPluginApi.Data.ConnectionSettings_Test
+namespace InterfaceBooster.Test.ProviderPluginApi.Data.AnswerList_Test
 {
     [TestFixture]
     public class Getting_Answers_Works
     {
-        private ConnectionSettings _Settings;
+        private AnswerList Answers;
 
         [SetUp]
         public void SetupTest()
         {
-            _Settings = new ConnectionSettings();
+            Answers = new AnswerList();
 
             // add the test questions/answers
 
-            _Settings.Answers.Add(
+            Answers.Add(
                 new Answer(
                     Question.New<string>("Test1", new string[] { "First", "Second" }, true)
                     , "Test-Value-1"));
 
-            _Settings.Answers.Add(
+            Answers.Add(
                 new Answer(
                     Question.New<string>("Test2", new string[] { "First", "Second" }, true)
                     , "Test-Value-2"));
 
-            _Settings.Answers.Add(
+            Answers.Add(
                 new Answer(
                     Question.New<string>("Test3", new string[] { "First", "Second" }, true)
                     , "Test-Value-3"));
@@ -38,17 +38,17 @@ namespace InterfaceBooster.Test.ProviderPluginApi.Data.ConnectionSettings_Test
             // add some other questions/answers with the same names but different paths and values
             // this is to avoid chance hits
 
-            _Settings.Answers.Add(
+            Answers.Add(
                 new Answer(
                     Question.New<string>("Test1", new string[] { "One", "Two" }, true)
                     , "Different-Test-Value-1"));
 
-            _Settings.Answers.Add(
+            Answers.Add(
                 new Answer(
                     Question.New<string>("Test2", new string[] { "One", "Two" }, true)
                     , "Different-Test-Value-2"));
 
-            _Settings.Answers.Add(
+            Answers.Add(
                 new Answer(
                     Question.New<string>("Test3", new string[] { "One", "Two" }, true)
                     , "Different-Test-Value-3"));
@@ -57,7 +57,7 @@ namespace InterfaceBooster.Test.ProviderPluginApi.Data.ConnectionSettings_Test
         [Test]
         public void Getting_Answer_Works()
         {
-            string testValue = _Settings.GetAnswerValue<string>("First.Second.Test2");
+            string testValue = Answers.GetAnswerValue<string>("First.Second.Test2");
 
             Assert.AreEqual("Test-Value-2", testValue);
         }
@@ -65,7 +65,7 @@ namespace InterfaceBooster.Test.ProviderPluginApi.Data.ConnectionSettings_Test
         [Test]
         public void Getting_DefaultValue_Works()
         {
-            string testValue = _Settings.GetAnswerValue<string>("Some.Wrong.Value.Test", "test-default");
+            string testValue = Answers.GetAnswerValue<string>("Some.Wrong.Value.Test", "test-default");
 
             Assert.AreEqual("test-default", testValue);
         }
@@ -73,7 +73,7 @@ namespace InterfaceBooster.Test.ProviderPluginApi.Data.ConnectionSettings_Test
         [Test]
         public void Getting_Answer_With_Non_Default_PathSeparator_Works()
         {
-            string testValue = _Settings.GetAnswerValue<string>("First_Second_Test2", pathSeparator: '_');
+            string testValue = Answers.GetAnswerValue<string>("First_Second_Test2", pathSeparator: '_');
 
             Assert.AreEqual("Test-Value-2", testValue);
         }

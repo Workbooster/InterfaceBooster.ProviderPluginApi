@@ -59,6 +59,7 @@
     <Compile Include="Communication\SaveResponse.cs" />
     <Compile Include="Communication\UpdateResponse.cs" />
     <Compile Include="Data\Answer.cs" />
+    <Compile Include="Data\AnswerList.cs" />
     <Compile Include="Data\ConnectionSettings.cs" />
     <Compile Include="Data\Field.cs" />
     <Compile Include="Data\Filter\AndFilterGroup.cs" />

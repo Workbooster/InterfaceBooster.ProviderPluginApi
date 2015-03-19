@@ -24,7 +24,7 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// <summary>
         /// Gets or sets a list of Answers given to the Questions from the resource.
         /// </summary>
-        IEnumerable<Answer> Answers { get; set; }
+        AnswerList Answers { get; set; }
 
         /// <summary>
         /// Gets or sets a Filter according to the available FilterDefinitions from the Resource.
