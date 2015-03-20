@@ -13,7 +13,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data
     {
         #region MEMBERS
 
-        public AnswerList _Answers;
+        private AnswerList _Answers;
 
         #endregion
 
