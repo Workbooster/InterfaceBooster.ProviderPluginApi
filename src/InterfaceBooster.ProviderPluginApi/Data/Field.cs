@@ -25,6 +25,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         private bool _IsNullable = true;
         private bool _IsKey = false;
         private bool _IsForeignKey = false;
+        private bool _IsUnique = false;
         private LocalizedText _ForeignKeyDescription;
 
         #endregion
@@ -110,6 +111,13 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         /// </summary>
         [XmlAttribute("IsForeignKey")]
         public bool IsForeignKey { get { return _IsForeignKey; } set { _IsForeignKey = value; } }
+        
+        /// <summary>
+        /// Gets or sets a flag that indicates whether this field must be unique in the foreign system.
+        /// This flag is only used for informative purpose. Interface Booster doesn't run any checks for unique values.
+        /// </summary>
+        [XmlAttribute("IsUnique")]
+        public bool IsUnique { get { return _IsUnique; } set { _IsUnique = value; } }
 
         /// <summary>
         /// Gets or sets a human readable description of the foreign key (only if this field is contains a foreign key).
