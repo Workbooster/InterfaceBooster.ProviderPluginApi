@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InterfaceBooster.ProviderPluginApi.Service
 {
-    public class UpdateResource : Resource
+    public class UpdateResource : Resource, IResourceWithSchema, IResourceWithFilterDefinition
     {
         #region PROPERTIES
 

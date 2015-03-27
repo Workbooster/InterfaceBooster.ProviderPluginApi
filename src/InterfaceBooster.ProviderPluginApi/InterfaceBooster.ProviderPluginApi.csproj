@@ -92,6 +92,8 @@
     <Compile Include="Service\IEndpoint.cs" />
     <Compile Include="Service\IExecuteEndpoint.cs" />
     <Compile Include="Service\IReadEndpoint.cs" />
+    <Compile Include="Service\IResourceWithFilterDefinition.cs" />
+    <Compile Include="Service\IResourceWithSchema.cs" />
     <Compile Include="Service\ISaveEndpoint.cs" />
     <Compile Include="Service\IUpdateEndpoint.cs" />
     <Compile Include="Service\ReadResource.cs" />

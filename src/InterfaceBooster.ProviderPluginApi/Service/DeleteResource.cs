@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InterfaceBooster.ProviderPluginApi.Service
 {
-    public class DeleteResource : Resource
+    public class DeleteResource : Resource, IResourceWithSchema, IResourceWithFilterDefinition
     {
         #region PROPERTIES
 

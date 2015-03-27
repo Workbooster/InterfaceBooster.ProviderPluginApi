@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InterfaceBooster.ProviderPluginApi.Service
 {
-    public class SaveResource : Resource
+    public class SaveResource : Resource, IResourceWithSchema
     {
         #region PROPERTIES
 
