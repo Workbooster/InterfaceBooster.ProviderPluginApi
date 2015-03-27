@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InterfaceBooster.ProviderPluginApi.Communication
 {
-    public interface ICreateRequest : IRequest
+    public interface ICreateRequest : IRequest, IRequestWithRecordSet
     {
         #region PROPERTIES
 
@@ -16,11 +16,6 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// Gets or sets the original resource this request is based on.
         /// </summary>
         new CreateResource Resource { get; set; }
-
-        /// <summary>
-        /// Gets or sets a RecordSet that matches the Schema of the resource (or null if no data is given).
-        /// </summary>
-        RecordSet RecordSet { get; set; }
 
         /// <summary>
         /// Gets or sets a list of Answers given to the Questions from the resource.

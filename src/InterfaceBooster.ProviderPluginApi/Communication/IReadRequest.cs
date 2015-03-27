@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InterfaceBooster.ProviderPluginApi.Communication
 {
-    public interface IReadRequest : IRequest
+    public interface IReadRequest : IRequest, IRequestWithFilters
     {
         /// <summary>
         /// Gets or sets the original resource this request is based on.
@@ -25,10 +25,5 @@ namespace InterfaceBooster.ProviderPluginApi.Communication
         /// Gets or sets a list of fields from the original Schema of the ReadResource that are expected to be loaded and returned within the response.
         /// </summary>
         IEnumerable<Field> RequestedFields { get; set; }
-
-        /// <summary>
-        /// Gets or sets a Filter according to the available FilterDefinitions from the Resource.
-        /// </summary>
-        Filter Filters { get; set; }
     }
 }

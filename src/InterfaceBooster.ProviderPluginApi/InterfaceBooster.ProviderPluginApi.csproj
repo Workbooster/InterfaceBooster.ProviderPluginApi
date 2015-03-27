@@ -51,6 +51,8 @@
     <Compile Include="Communication\IExecuteRequest.cs" />
     <Compile Include="Communication\IReadRequest.cs" />
     <Compile Include="Communication\IRequest.cs" />
+    <Compile Include="Communication\IRequestWithFilters.cs" />
+    <Compile Include="Communication\IRequestWithRecordSet.cs" />
     <Compile Include="Communication\ISaveRequest.cs" />
     <Compile Include="Communication\IUpdateRequest.cs" />
     <Compile Include="Communication\ReadResponse.cs" />
