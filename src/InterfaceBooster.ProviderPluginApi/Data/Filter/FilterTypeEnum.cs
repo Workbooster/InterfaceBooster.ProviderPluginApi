@@ -34,7 +34,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data.Filter
         /// "Test" !== "test" is true
         /// "Test" !== "Test" is false
         /// </summary>
-        NotExactlyEqual,
+        ExactlyNotEqual,
         
         GreaterThan,
         GreaterThanOrEqual,
