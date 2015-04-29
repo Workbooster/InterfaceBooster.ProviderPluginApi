@@ -73,6 +73,70 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             return record._Data;
         }
 
+        /// <summary>
+        /// Gets the field value and casts it to the given type.
+        /// If the value is null the <paramref name="defaultValue"/> is returned.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fieldIndex"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public T GetValue<T>(int fieldIndex, T defaultValue = default(T))
+        {
+            var value = this[fieldIndex];
+            if (value == null)
+                return defaultValue;
+            else
+                return (T)value;
+        }
+
+        /// <summary>
+        /// Gets the field value and casts it to the given type.
+        /// If the value is null the <paramref name="defaultValue"/> is returned.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fieldIndex"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public T GetValue<T>(string fieldName, T defaultValue = default(T))
+        {
+            var value = this[fieldName];
+            if (value == null)
+                return defaultValue;
+            else
+                return (T)value;
+        }
+
+        /// <summary>
+        /// Gets the field value and casts it to a nullable instance of the given type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fieldIndex"></param>
+        /// <returns></returns>
+        public T? GetNullableValue<T>(int fieldIndex) where T : struct
+        {
+            var value = this[fieldIndex];
+            if (value == null)
+                return null;
+            else
+                return (T)value;
+        }
+
+        /// <summary>
+        /// Gets the field value and casts it to a nullable instance of the given type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fieldName"></param>
+        /// <returns></returns>
+        public T? GetNullableValue<T>(string fieldName) where T : struct
+        {
+            var value = this[fieldName];
+            if (value == null)
+                return null;
+            else
+                return (T)value;
+        }
+
         #region INDEXERS
 
         public object this[string fieldName]
