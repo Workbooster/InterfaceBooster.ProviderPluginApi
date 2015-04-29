@@ -52,6 +52,40 @@ namespace InterfaceBooster.Test.ProviderPluginApi.Data.AnswerList_Test
                 new Answer(
                     Question.New<string>("Test3", new string[] { "One", "Two" }, true)
                     , "Different-Test-Value-3"));
+
+            // add some questions with path = null
+
+            Answers.Add(
+                new Answer(
+                    Question.New<string>("Test1", null, true)
+                    , "NullPath-Test-Value-1"));
+
+            Answers.Add(
+                new Answer(
+                    Question.New<string>("Test2", null, true)
+                    , "NullPath-Test-Value-2"));
+
+            Answers.Add(
+                new Answer(
+                    Question.New<string>("Test3", null, true)
+                    , "NullPath-Test-Value-3"));
+
+            // add some questions with path = empty-string-array
+
+            Answers.Add(
+                new Answer(
+                    Question.New<string>("EmptyTest1", new string[] { }, true)
+                    , "EmptyPath-Test-Value-1"));
+
+            Answers.Add(
+                new Answer(
+                    Question.New<string>("EmptyTest2", new string[] { }, true)
+                    , "EmptyPath-Test-Value-2"));
+
+            Answers.Add(
+                new Answer(
+                    Question.New<string>("EmptyTest3", new string[] { }, true)
+                    , "EmptyPath-Test-Value-3"));
         }
 
         [Test]
@@ -76,6 +110,38 @@ namespace InterfaceBooster.Test.ProviderPluginApi.Data.AnswerList_Test
             string testValue = Answers.GetAnswerValue<string>("First_Second_Test2", pathSeparator: '_');
 
             Assert.AreEqual("Test-Value-2", testValue);
+        }
+
+        [Test]
+        public void Getting_NullPath_Answer_From_Question_With_EmptyPath_Works()
+        {
+            string testValue = Answers.GetAnswerValue<string>("Test2", path: new string[] { });
+
+            Assert.AreEqual("NullPath-Test-Value-2", testValue);
+        }
+
+        [Test]
+        public void Getting_NullPath_Answer_From_Question_With_NullPath_Works()
+        {
+            string testValue = Answers.GetAnswerValue<string>("Test2", path: null);
+
+            Assert.AreEqual("NullPath-Test-Value-2", testValue);
+        }
+
+        [Test]
+        public void Getting_EmptyPath_Answer_From_Question_With_EmptyPath_Works()
+        {
+            string testValue = Answers.GetAnswerValue<string>("EmptyTest2", path: new string[] { });
+
+            Assert.AreEqual("EmptyPath-Test-Value-2", testValue);
+        }
+
+        [Test]
+        public void Getting_EmptyPath_Answer_From_Question_With_NullPath_Works()
+        {
+            string testValue = Answers.GetAnswerValue<string>("EmptyTest2", path: null);
+
+            Assert.AreEqual("EmptyPath-Test-Value-2", testValue);
         }
     }
 }

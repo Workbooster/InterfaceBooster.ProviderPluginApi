@@ -82,11 +82,13 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         /// <returns>The Answer value or null.</returns>
         public Answer GetAnswer<T>(string name, string[] path)
         {
+            if(path == null) path = new string[0];
+
             return (from a in this
                     where a.Question != null
                     && a.Question.Name == name
                     && a.Question.ExpectedType == typeof(T)
-                    && ((a.Question.Path == null && path == null)
+                    && (((a.Question.Path == null || a.Question.Path.Length == 0) && path.Length == 0)
                         || (a.Question.Path != null && a.Question.Path.SequenceEqual(path)))
                     select a).FirstOrDefault();
         }
