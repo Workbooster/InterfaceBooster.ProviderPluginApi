@@ -69,7 +69,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data
 
             foreach (var item in data)
             {
-                NewRecord(new Record(Schema, item));
+                AppendRecord(new Record(Schema, item));
             }
         }
 
@@ -83,15 +83,36 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         }
 
         /// <summary>
+        /// Creates a new Record with the same Schema as the RecordSet.
+        /// (Does not add the Record to the RecordSet!)
+        /// </summary>
+        /// <returns></returns>
+        public Record NewRecord()
+        {
+            return new Record(Schema);
+        }
+
+        /// <summary>
+        /// Creates a new Record with the same Schema as the RecordSet.
+        /// (Does not add the Record to the RecordSet!)
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public Record NewRecord(params object[] args)
+        {
+            return new Record(Schema, args);
+        }
+
+        /// <summary>
         /// Creates and adds a new record and allows a fluid API like:
         /// rs.NewRecord(1, "bla").NewRecord(2, "aha").NewRecord(3, "ok");
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public RecordSet NewRecord(params object[] args)
+        public RecordSet AppendRecord(params object[] args)
         {
             Add(new Record(Schema, args));
-
+            
             return this;
         }
 

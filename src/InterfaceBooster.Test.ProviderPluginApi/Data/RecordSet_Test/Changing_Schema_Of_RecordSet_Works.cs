@@ -26,8 +26,8 @@ namespace InterfaceBooster.Test.ProviderPluginApi.Data.RecordSet_Test
 
             _ExistingRecordSet = new RecordSet(schema);
 
-            _ExistingRecordSet.NewRecord(1, "Mike", "Main Avenue 15", "Somecity");
-            _ExistingRecordSet.NewRecord(2, "Molly", "Sixt Street 12", "Anothercity");
+            _ExistingRecordSet.AppendRecord(1, "Mike", "Main Avenue 15", "Somecity");
+            _ExistingRecordSet.AppendRecord(2, "Molly", "Sixt Street 12", "Anothercity");
         }
 
         [Test]

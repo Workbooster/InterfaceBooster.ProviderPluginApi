@@ -45,8 +45,8 @@ namespace InterfaceBooster.Test.ProviderPluginApi.Data.RecordSet_Test
         {
             // use the record sets "NewRecord" method to add the records
 
-            _ExistingRecordSet.NewRecord(1, "Mike");
-            _ExistingRecordSet.NewRecord(2, "Molly");
+            _ExistingRecordSet.AppendRecord(1, "Mike");
+            _ExistingRecordSet.AppendRecord(2, "Molly");
 
             Assert.AreEqual(2, _ExistingRecordSet.Count);
             Assert.AreEqual("Mike", _ExistingRecordSet.Where(r => (int)r["Id"] == 1).Select(r => r["Name"]).First());
