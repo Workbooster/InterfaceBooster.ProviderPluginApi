@@ -65,9 +65,9 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             IsRequired = isRequired;
         }
 
-        public static Question New<T>(string name, bool isRequired = false)
+        public static Question New<T>(string name, bool isRequired = false, string internalName = null, string description = null)
         {
-            return new Question(name, typeof(T), isRequired);
+            return New<T>(name, null, isRequired, internalName, description);
         }
 
         public static Question New<T>(string name, string[] path, bool isRequired = false, string internalName = null, string description = null)
