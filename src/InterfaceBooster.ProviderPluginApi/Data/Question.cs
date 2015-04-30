@@ -70,7 +70,7 @@ namespace InterfaceBooster.ProviderPluginApi.Data
             return new Question(name, typeof(T), isRequired);
         }
 
-        public static Question New<T>(string name, string[] path = null, bool isRequired = false, string internalName = null, string description = null)
+        public static Question New<T>(string name, string[] path, bool isRequired = false, string internalName = null, string description = null)
         {
             Question q = new Question(name, path, typeof(T), isRequired);
 
