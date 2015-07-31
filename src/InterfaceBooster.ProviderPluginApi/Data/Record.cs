@@ -108,6 +108,28 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         }
 
         /// <summary>
+        /// Checks whether the given field exists and gets the field value and casts it to the given type.
+        /// If the field doesn't exists or the value is null the <paramref name="defaultValue"/> is returned.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fieldName"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public T GetValueOrDefault<T>(string fieldName, T defaultValue = default(T))
+        {
+            int fieldIndex = _Schema.FindIndexOfFieldByName(fieldName);
+
+            if (fieldIndex == -1)
+                return defaultValue;
+
+            var value = this[fieldIndex];
+            if (value == null)
+                return defaultValue;
+            else
+                return (T)value;
+        }
+
+        /// <summary>
         /// Gets the field value and casts it to a nullable instance of the given type.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -131,6 +153,28 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         public T? GetNullableValue<T>(string fieldName) where T : struct
         {
             var value = this[fieldName];
+            if (value == null)
+                return null;
+            else
+                return (T)value;
+        }
+
+        /// <summary>
+        /// Checks whether the given field exists and gets the field value and casts it to a nullable instance of the given type.
+        /// If the field wasn't found NULL is returned.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fieldName"></param>
+        /// <returns></returns>
+        public T? GetNullableValueOrDefault<T>(string fieldName) where T : struct
+        {
+            int fieldIndex = _Schema.FindIndexOfFieldByName(fieldName);
+
+            if (fieldIndex == -1)
+                return null;
+
+            var value = this[fieldIndex];
+
             if (value == null)
                 return null;
             else
