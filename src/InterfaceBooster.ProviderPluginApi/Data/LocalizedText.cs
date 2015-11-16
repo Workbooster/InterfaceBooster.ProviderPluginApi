@@ -99,6 +99,8 @@ namespace InterfaceBooster.ProviderPluginApi.Data
         /// <returns></returns>
         public static implicit operator string(LocalizedText localizedText)
         {
+            if (localizedText == null) return null;
+
             return localizedText.Default;
         }
 
